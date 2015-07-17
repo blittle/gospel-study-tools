@@ -1,6 +1,7 @@
 'use strict';
 
-var timeout;
+var sendHeartbeat = false;
+var interval;
 
 var resourceHandlers = {
 	scripture: {
@@ -94,12 +95,25 @@ document.body.onscroll = function() {
 }
 
 function sendResourceNotification() {
-	if (!pageResource) return;
-	if (timeout) clearTimeout(timeout);
+  sendHeartbeat = true;
+  if (!interval)
+  {
+    startInterval();
+  }
+}
 
-	timeout = setTimeout(function() {
-		chrome.runtime.sendMessage(pageResource, function(response) {
-			console.log(response);
-		});
-	}, 1000);
+function startInterval() {
+  interval = setInterval(function() {
+    if (sendHeartbeat)
+    {
+      chrome.runtime.sendMessage(pageResource, function(response) {
+    		console.log(response);
+    	});
+    	sendHeartbeat = false;
+    }
+    else
+    {
+      clearInterval(interval);
+    }
+  }, 20000);
 }
