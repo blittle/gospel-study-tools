@@ -93,13 +93,24 @@ document.body.onscroll = function() {
 	sendResourceNotification();
 }
 
-function sendResourceNotification() {
+var sendResourceNotification = throttle(function() {
 	if (!pageResource) return;
-	if (timeout) clearTimeout(timeout);
 
-	timeout = setTimeout(function() {
-		chrome.runtime.sendMessage(pageResource, function(response) {
-			console.log(response);
-		});
-	}, 1000);
+	chrome.runtime.sendMessage(pageResource, function(response) {
+		console.log(response);
+	});
+}, ONE_MINUTE);
+
+
+function throttle(callback, limit) {
+  var wait = false;
+  return function() {
+    if (!wait) {
+      callback.call();
+      wait = true;
+      setTimeout(function() {
+        wait = false;
+      }, limit);
+    }
+  }
 }
