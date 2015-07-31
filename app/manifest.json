@@ -1,8 +1,11 @@
 {
-  "name": "__MSG_appName__",
+  "name": "LDS Gospel Study Tools",
   "version": "0.0.22",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
+	"permissions": [
+		"storage"
+	],
   "icons": {
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"
@@ -30,9 +33,22 @@
         "https://www.lds.org/*"
       ],
       "js": [
-        "scripts/contentscript.js"
+        "scripts/lds-scraper.js"
       ],
       "run_at": "document_end",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "http://localhost:4567/*",
+        "https://localhost:4567/*",
+				"https://gospelstudy.tools/*",
+				"http://gospelstudy.tools/*"
+      ],
+      "js": [
+        "scripts/gstweb.js"
+      ],
+      "run_at": "document_idle",
       "all_frames": false
     }
   ]
