@@ -1,6 +1,7 @@
 'use strict';
 
 var timeout;
+var ONE_MINUTE = 60 * 1000;
 
 var resourceHandlers = {
 	scripture: {
@@ -67,6 +68,14 @@ var resourceHandlers = {
 	}
 };
 
+var sendResourceNotification = throttle(function() {
+	if (!pageResource) return;
+
+	chrome.runtime.sendMessage(pageResource, function(response) {
+		console.log(response);
+	});
+}, ONE_MINUTE);
+
 
 function getResourceFromURL(url) {
 	for (var name in resourceHandlers) {
@@ -92,15 +101,6 @@ document.body.onclick = function() {
 document.body.onscroll = function() {
 	sendResourceNotification();
 }
-
-var sendResourceNotification = throttle(function() {
-	if (!pageResource) return;
-
-	chrome.runtime.sendMessage(pageResource, function(response) {
-		console.log(response);
-	});
-}, ONE_MINUTE);
-
 
 function throttle(callback, limit) {
   var wait = false;
