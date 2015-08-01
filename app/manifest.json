@@ -4,7 +4,8 @@
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
 	"permissions": [
-		"storage"
+		"storage",
+		"tabs"
 	],
   "icons": {
     "16": "images/icon-16.png",
@@ -14,19 +15,20 @@
   "background": {
     "scripts": [
       "bower_components/lodash/lodash.min.js",
+			"bower_components/es6-promise/promise.min.js",
+			"bower_components/fetch/fetch.js",
       "scripts/chromereload.js",
       "scripts/background.js"
     ]
   },
   "browser_action": {
     "default_icon": {
-      "16": "images/icon-16.png",
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png",
-      "128": "images/icon-128.png"
+      "16": "images/icon-bw-16.png",
+      "19": "images/icon-bw-19.png",
+      "38": "images/icon-bw-38.png",
+      "128": "images/icon-bw-128.png"
     },
-    "default_title": "gospel study tools",
-    "default_popup": "popup.html"
+    "default_title": "LDS Gospel Study Tools"
   },
   "content_scripts": [
     {
