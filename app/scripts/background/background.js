@@ -40,11 +40,12 @@ chrome.runtime.onMessage.addListener(
 			let json = session.getJSON();
 			localStorage.setItem(STORAGE_SESSION_KEY, json);
 
-			chrome.browserAction.setBadgeText({
-				text: request.type.toLowerCase()
-			});
+			// chrome.browserAction.setBadgeText({
+			// 	text: request.type.toLowerCase()
+			// });
 
 			startSessionTimeout();
+			updateIcon();
 		}
 	});
 
@@ -68,14 +69,18 @@ function saveAndClearSession() {
 	console.log(pSession);
 	delete sessions[CURRENT_SESSION];
 	localStorage.removeItem(STORAGE_SESSION_KEY);
+
+	chrome.browserAction.setBadgeText({
+		text: ''
+	});
+
+	updateIcon();
 }
 
 function checkAuthentication() {
 	function clearAuthentication() {
 		isAuthenticated = false;
-		chrome.browserAction.setIcon({
-			path: "images/icon-bw-19.png"
-		})
+		updateIcon();
 	}
 
 	chrome.storage.sync.get('GST_AUTH_TOKEN', function(result) {
@@ -91,14 +96,32 @@ function checkAuthentication() {
 				return response.json();
 			})
 			.then(function(json) {
+
 				if (json.error) {
 					clearAuthentication();
 				} else {
 					isAuthenticated = true;
-					chrome.browserAction.setIcon({
-						path: "images/icon-19.png"
-					})
 				}
+
+				updateIcon();
 			})
 	});
+}
+
+function updateIcon() {
+	if (!isAuthenticated) {
+		chrome.browserAction.setIcon({
+			path: "images/icon-bw-19.png"
+		})
+	} else {
+		if (sessions[CURRENT_SESSION]) {
+			chrome.browserAction.setIcon({
+				path: "images/icon-19.png"
+			})
+		} else {
+			chrome.browserAction.setIcon({
+				path: "images/icon-blank-19.png"
+			})
+		}
+	}
 }
