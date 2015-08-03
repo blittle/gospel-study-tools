@@ -1,9 +1,4 @@
-'use strict';
-
-var timeout;
-var ONE_MINUTE = 60 * 1000;
-
-var resourceHandlers = {
+export default {
 	scripture: {
 		regex: /\/scriptures\/(.+)\/(.+)\/(.*)/,
 		getResource: function(match) {
@@ -67,50 +62,3 @@ var resourceHandlers = {
 		}
 	}
 };
-
-var sendResourceNotification = throttle(function() {
-	if (!pageResource) return;
-
-	chrome.runtime.sendMessage(pageResource, function(response) {
-		console.log(response);
-	});
-}, ONE_MINUTE);
-
-
-function getResourceFromURL(url) {
-	for (var name in resourceHandlers) {
-		if (resourceHandlers.hasOwnProperty(name)) {
-			var handler = resourceHandlers[name];
-			if (handler.regex.test(url)) {
-				return handler.getResource.call(null, handler.regex.exec(url))
-			}
-		}
-	}
-}
-
-var pageResource = getResourceFromURL(window.location.pathname);
-
-if (pageResource) {
-	sendResourceNotification();
-}
-
-document.body.onclick = function() {
-	sendResourceNotification();
-}
-
-document.body.onscroll = function() {
-	sendResourceNotification();
-}
-
-function throttle(callback, limit) {
-  var wait = false;
-  return function() {
-    if (!wait) {
-      callback.call();
-      wait = true;
-      setTimeout(function() {
-        wait = false;
-      }, limit);
-    }
-  }
-}

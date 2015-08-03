@@ -34,7 +34,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['jshint'],
+        tasks: ['jshint', 'babel'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
@@ -61,6 +61,20 @@ module.exports = function (grunt) {
         ]
       }
     },
+
+		"babel": {
+			options: {
+				sourceMap: true,
+				modules: 'umd'
+			},
+			dist: {
+				files: {
+					"app/build/auth/auth.js": "app/scripts/auth/auth.js",
+					"app/build/scraper/scraper.js": "app/scripts/scraper/scraper.js",
+					"app/build/background/background.js": "app/scripts/background/background.js"
+				}
+			}
+		},
 
     // Grunt server and debug server setting
     connect: {

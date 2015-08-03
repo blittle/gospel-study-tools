@@ -18,7 +18,7 @@
 			"bower_components/es6-promise/promise.min.js",
 			"bower_components/fetch/fetch.js",
       "scripts/chromereload.js",
-      "scripts/background.js"
+      "build/background.build.js"
     ]
   },
   "browser_action": {
@@ -37,7 +37,7 @@
         "https://www.lds.org/*"
       ],
       "js": [
-        "scripts/lds-scraper.js"
+        "build/scraper.build.js"
       ],
       "run_at": "document_end",
       "all_frames": false
@@ -50,7 +50,7 @@
 				"http://gospelstudy.tools/*"
       ],
       "js": [
-        "scripts/gstweb.js"
+        "build/auth.build.js"
       ],
       "run_at": "document_idle",
       "all_frames": false
