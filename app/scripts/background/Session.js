@@ -38,10 +38,16 @@ export default class Session {
 	}
 
 	getProcessedSession() {
+		let startTime = this._getStartTime();
+		let endTime = this._getEndTime();
+
 		return {
-			start: this._getStartTime(),
-			end: this._getEndTime(),
-			resources: this._groupResources()
+			resources: this._fixResourceTimings(
+				endTime - startTime,
+				this._groupResources()
+			),
+			startTime,
+			endTime
 		};
 	}
 
@@ -101,6 +107,26 @@ export default class Session {
 		});
 
 		return resources;
+	}
+
+	_fixResourceTimings(totalTime, resourceTypes) {
+		let totalDynamicTime = _.reduce(resourceTypes, (total, rt) => {
+			return total + _.reduce(rt, (total, r) => {
+				return total + r.time;
+			}, total);
+		}, 0);
+
+		const ratio = totalTime / totalDynamicTime;
+
+		let newResourceTypes = {};
+		_.each(resourceTypes, (rt, TYPE) => {
+			newResourceTypes[TYPE] = _.map(rt, (r) => {
+				r.time = r.time * ratio;
+				return r;
+			});
+		});
+
+		return newResourceTypes;
 	}
 
 	_createResource(resource) {

@@ -17,7 +17,7 @@ if (storageSession) {
 		JSON.parse(storageSession)
 	);
 
-	sessions[CURRENT_SESSION] = session;
+	sessions[CURRENT_SESSION] = window.gstSession = session;
 	saveAndClearSession();
 }
 
@@ -67,7 +67,7 @@ function saveAndClearSession() {
 	let pSession = sessions[CURRENT_SESSION].getProcessedSession();
 	console.log(pSession);
 	delete sessions[CURRENT_SESSION];
-	localStorage.removeItem('GST:SESSON');
+	localStorage.removeItem(STORAGE_SESSION_KEY);
 }
 
 function checkAuthentication() {
