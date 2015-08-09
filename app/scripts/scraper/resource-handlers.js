@@ -4,9 +4,9 @@ export default {
 		getResource: function(match) {
 			return {
 				type: "SCRIPTURE",
-				bookGroup: match[1],
-				book: match[2],
-				chapter: match[3]
+				l1: match[1],
+				l2: match[2],
+				l3: match[3]
 			}
 		}
 	},
@@ -16,8 +16,8 @@ export default {
 		getResource: function(match) {
 			return {
 				type: "MANUAL",
-				book: match[1],
-				chapter: match[2]
+				l1: match[1],
+				l2: match[2]
 			}
 		}
 	},
@@ -31,10 +31,10 @@ export default {
 			if (title && author) {
 				return {
 					type: "GC",
-					year: match[1],
-					month: match[2],
-					title: title.innerText,
-					author: author.innerText
+					l1: match[1],
+					l2: match[2],
+					l3: title.innerText,
+					l4: author.innerText
 				}
 			}
 
@@ -51,10 +51,10 @@ export default {
 			if (title && author) {
 				return {
 					type: "ENSIGN",
-					year: match[1],
-					month: match[2],
-					title: title.innerText,
-					author: author.content
+					l1: match[1],
+					l2: match[2],
+					l3: title.innerText,
+					l4: author.content
 				}
 			}
 

@@ -1,12 +1,12 @@
 {
   "name": "LDS Gospel Study Tools",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "manifest_version": 2,
   "description": "__MSG_appDescription__",
-	"permissions": [
-		"storage",
-		"tabs"
-	],
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
   "icons": {
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"
@@ -15,8 +15,8 @@
   "background": {
     "scripts": [
       "bower_components/lodash/lodash.min.js",
-			"bower_components/es6-promise/promise.min.js",
-			"bower_components/fetch/fetch.js",
+      "bower_components/es6-promise/promise.min.js",
+      "bower_components/fetch/fetch.js",
       "scripts/chromereload.js",
       "build/background.build.js"
     ]
@@ -46,8 +46,8 @@
       "matches": [
         "http://localhost:4567/*",
         "https://localhost:4567/*",
-				"https://gospelstudy.tools/*",
-				"http://gospelstudy.tools/*"
+        "https://gospelstudy.tools/*",
+        "http://gospelstudy.tools/*"
       ],
       "js": [
         "build/auth.build.js"

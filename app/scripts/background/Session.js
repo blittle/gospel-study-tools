@@ -60,7 +60,7 @@ export default class Session {
 				return found;
 			}, null);
 
-			if (!highestFound || start < highestFound) {
+			if (!highestFound || end > highestFound) {
 				return end;
 			}
 
@@ -106,27 +106,22 @@ export default class Session {
 			});
 		});
 
-		return resources;
+		return _.reduce(resources, (allResources, resource) => {
+			return _.union(allResources, resource);
+		}, [])
 	}
 
-	_fixResourceTimings(totalTime, resourceTypes) {
-		let totalDynamicTime = _.reduce(resourceTypes, (total, rt) => {
-			return total + _.reduce(rt, (total, r) => {
-				return total + r.time;
-			}, total);
+	_fixResourceTimings(totalTime, resources) {
+		let totalDynamicTime = _.reduce(resources, (total, resource) => {
+			return total + resource.time;
 		}, 0);
 
 		const ratio = totalTime / totalDynamicTime;
 
-		let newResourceTypes = {};
-		_.each(resourceTypes, (rt, TYPE) => {
-			newResourceTypes[TYPE] = _.map(rt, (r) => {
-				r.time = r.time * ratio;
-				return r;
-			});
+		return resources.map((resource) => {
+			resource.time = resource.time * ratio;
+			return resource;
 		});
-
-		return newResourceTypes;
 	}
 
 	_createResource(resource) {
