@@ -1,2 +1,2 @@
 # gospel-study-tools
-A chrome extension for gathering LDS Gospel study habbits
+A chrome extension for gathering LDS Gospel study habits
