@@ -31,10 +31,10 @@ export default {
 			if (title && author) {
 				return {
 					type: "GC",
-					l1: match[1],
+					l1: match[1].trim(),
 					l2: match[2],
 					l3: title.innerText,
-					l4: author.innerText
+					l4: author.content
 				}
 			}
 
