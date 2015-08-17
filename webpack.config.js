@@ -4,7 +4,8 @@ module.exports = {
 	entry: {
 		auth: "./app/scripts/auth/auth.js",
 		scraper: "./app/scripts/scraper/scraper.js",
-		background: "./app/scripts/background/background.js"
+		background: "./app/scripts/background/background.js",
+		popup: "./app/scripts/popup.js"
 	},
 	devtool: 'source-map',
 	output: {

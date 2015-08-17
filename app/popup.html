@@ -7,19 +7,41 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/main.css -->
-    <link href="styles/main.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans|Ovo' rel='stylesheet' type='text/css'>
+    <link href="styles/popup.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
-    <h1>'Allo, 'Allo!</h1>
-
+		<div class='gst-popup'>
+			<div class='time-title'>Study Time Today</div>
+			<div class='time-counter'>
+				<div class='time-counter__el'>
+					<div id='hours' class='time-counter__value'>00</div>
+					<div class='time-counter__label'>Hours</div>
+				</div>
+				<div class="time-counter__break">|</div>
+				<div class='time-counter__el'>
+					<div id='minutes' class='time-counter__value'>00</div>
+					<div class='time-counter__label'>Minutes</div>
+				</div>
+				<div class="time-counter__break">|</div>
+				<div class='time-counter__el'>
+					<div id='seconds' class='time-counter__value'>00</div>
+					<div class='time-counter__label'>Seconds</div>
+				</div>
+			</div>
+			<center style='margin-top: 10px;'>
+				<button class="btn btn-1 btn-1a">VIEW STUDY STATS</button>
+			</center>
+		</div>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js scripts/popup.js -->
-    <script src="scripts/popup.js"></script>
+    <script src="build/popup.build.js"></script>
     <!-- endbuild -->
   </body>
 </html>
