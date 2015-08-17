@@ -4,16 +4,29 @@ import * as resource from './background/resource';
 
 console.log('\'Allo \'Allo! Popup');
 
-function handleError() {
+document.getElementById('login').addEventListener('click', () => {
+	chrome.tabs.create({
+		url: HOST + '/authenticate/google'
+	});
+});
+
+function handleError(error) {
+	document.querySelector('.gst-popup').style.display = 'none';
+	document.querySelector('.gst-popup-auth').style.display = 'block';
 }
 
 chrome.storage.sync.get('GST_AUTH_TOKEN', function(result) {
 	resource.getAuthenticatedUser(result.GST_AUTH_TOKEN)
 	.catch(() => handleError)
-	.then(response => response.json())
+	.then((response) => {
+		if (response.json) return response.json();
+		else return new Promise((resolve, reject) => {
+			handleError();
+		});
+	})
 	.then((json) => {
 		if (json.error) {
-			return handleError();
+			return handleError(json.error);
 		}
 
 		fetch(HOST + '/study-content/day-aggregation/1', {
@@ -26,6 +39,10 @@ chrome.storage.sync.get('GST_AUTH_TOKEN', function(result) {
 		.catch(() => handleError)
 		.then(response => response.json())
 		.then((json) => {
+
+			document.querySelector('.gst-popup').style.display = 'block';
+			document.querySelector('.gst-popup-auth').style.display = 'none';
+
 			const {hours, minutes, seconds} = getHoursMinutesSeconds(json.data[0].total_seconds);
 			document.getElementById('hours').innerText = hours;
 			document.getElementById('minutes').innerText = minutes;
