@@ -1,1 +1,35 @@
-Hello!!
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css styles/main.css -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/cal-heatmap/cal-heatmap.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans|Cabin+Condensed' rel='stylesheet' type='text/css'>
+    <link href="styles/app.css" rel="stylesheet">
+    <!-- endbuild -->
+  </head>
+  <body>
+		<div class="main-container">
+			<div class="main-container__header">
+				<div class="avatar">
+					<img class="avatar__img" src="images/avatar.jpg">
+				</div>
+				<div class='main-container__title'>
+					BRET LITTLE
+				</div>
+				<div id="cal-heatmap"></div>
+			</div>
+
+		</div>
+    <!-- build:js scripts/popup.js -->
+    <script src="bower_components/d3/d3.min.js"></script>
+    <script src="bower_components/cal-heatmap/cal-heatmap.min.js"></script>
+    <script src="build/app.build.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

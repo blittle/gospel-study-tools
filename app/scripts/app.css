@@ -1,0 +1,48 @@
+html, body {
+	height: 100%;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.main-container {
+	/* width: 1200px; */
+	/* height: 100%; */
+	/* margin: 0 auto; */
+	/* background-image: url(../images/temple.jpg); */
+	/* background-size: 100% 1200px; */
+	/* background-repeat: no-repeat; */
+	/* background-position: 0 -216px; */
+}
+
+.main-container__header {
+	height: 64px;
+	background: rgba(66, 133, 244, 0.7);
+	padding: 0 30px;
+}
+
+.avatar {
+	height: 48px;
+	width: 48px;
+	display: inline-block;
+	vertical-align: top;
+	position: relative;
+	top: 8px;
+}
+
+.avatar__img {
+	border-radius: 50%;
+	height: 48px;
+	width: 48px;
+}
+
+.main-container__title {
+	display:inline-block;
+	height: 100%;
+	vertical-align: top;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+	font-family: 'Cabin Condensed', sans-serif;
+	position: relative;
+	left: 30px;
+	top: 20px;
+}
