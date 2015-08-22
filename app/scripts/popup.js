@@ -10,6 +10,10 @@ document.getElementById('login').addEventListener('click', () => {
 	});
 });
 
+document.getElementById('view-stats').addEventListener('click', () => {
+	chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
+});
+
 function handleError(error) {
 	document.querySelector('.gst-popup').style.display = 'none';
 	document.querySelector('.gst-popup-auth').style.display = 'block';

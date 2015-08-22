@@ -7,6 +7,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css styles/main.css -->
+		<link href='bower_components/font-awesome/css/font-awesome.min.css' rel='stylesheet'>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/cal-heatmap/cal-heatmap.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans|Cabin+Condensed' rel='stylesheet' type='text/css'>
@@ -23,7 +24,27 @@
 			</div>
 		</div>
 		<div class='main-container'>
-			<div class="cal-heatmap"></div>
+			<div class='cards'>
+				<div class='card card--half' id='top-content'>
+				</div>
+				<div class='card card--half'>
+					<div class='card__header'>
+						Recent Content
+					</div>
+					<div class='card__body'>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class='card'>
+					<div class='card__header'>
+						Study History
+					</div>
+					<div class='card__body'>
+						<div class="cal-heatmap"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 
     <!-- build:js scripts/popup.js -->

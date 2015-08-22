@@ -1,9 +1,13 @@
-import { getDayAggregation } from './data';
+import React from 'react';
+
+import { getDayAggregation, getTopContent } from './data';
 import { DAY } from './constants';
+import TopContent from './components/TopContent';
 
 import './app.css';
 
 getDayAggregation(365).then(renderCalHeatmap)
+getTopContent().then(renderTopContent);
 
 function renderCalHeatmap(response) {
 	var calendar = new CalHeatMap();
@@ -40,4 +44,12 @@ function renderCalHeatmap(response) {
 			return stats;
 		}
 	});
+}
+
+function renderTopContent(response) {
+	const content = response.data;
+	React.render(
+		<TopContent content={content} />,
+	  document.getElementById('top-content')
+	);
 }

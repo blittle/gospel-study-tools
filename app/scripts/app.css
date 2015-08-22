@@ -4,7 +4,7 @@ html, body {
 }
 
 .main-container {
-	width: 1024px;
+	width: 800px;
 	/* height: 100%; */
 	margin: 0 auto;
 	/* background-image: url(../images/temple.jpg); */
@@ -50,4 +50,71 @@ html, body {
 	position: relative;
 	left: 30px;
 	top: 20px;
+}
+
+.cards {
+	margin: 24px 0;
+}
+
+.card {
+	vertical-align: top;
+	display: inline-block;
+	min-height: 140px;
+	border: 1px solid #d8d8d8;
+	border-radius: 2px;
+	width: 100%;
+}
+
+.card--half {
+	width: calc(50% - 12px);
+}
+
+.card--half:first-child {
+	margin-right: 20px;
+}
+
+.cal-heatmap {
+	margin: 24px auto;
+}
+
+.card__header {
+	background: #f5f5f5;
+	font-weight: bold;
+	height: 36px;
+	padding: 8px 16px;
+	box-sizing: border-box;
+	border-bottom: 1px solid #d8d8d8;
+}
+
+.card__body {
+}
+
+.card__element {
+	padding: 8px 16px;
+	border-bottom: 1px solid #d8d8d8;
+}
+
+.card__element__icon, .card__element__title, .card__element__count {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.card__element__title {
+	margin-left: 8px;
+	max-width: 210px;
+}
+
+.card__element__count {
+	font-size: 10px;
+	float: right;
+	position: relative;
+	top: 2px;
+}
+
+.truncate {
+	max-width: 215px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
 }

@@ -26,3 +26,21 @@ export function getDayAggregation(count) {
 		})
 	});
 }
+
+export function getTopContent() {
+	return new Promise((resolve, reject) => {
+		getAuthorization().then((token)  => {
+			fetch(HOST + `/study-content/top`, {
+				method: 'get',
+				headers: {
+					'Authorization': token,
+					'Content-Type': 'application/json'
+				}
+			})
+			.catch(reject)
+			.then(response => response.json())
+			.catch(reject)
+			.then(resolve);
+		})
+	});
+}
