@@ -4,19 +4,13 @@ html, body {
 }
 
 .main-container {
-	/* width: 1200px; */
+	width: 1024px;
 	/* height: 100%; */
-	/* margin: 0 auto; */
+	margin: 0 auto;
 	/* background-image: url(../images/temple.jpg); */
 	/* background-size: 100% 1200px; */
 	/* background-repeat: no-repeat; */
 	/* background-position: 0 -216px; */
-}
-
-.main-container__header {
-	height: 64px;
-	background: rgba(66, 133, 244, 0.7);
-	padding: 0 30px;
 }
 
 .avatar {
@@ -34,7 +28,18 @@ html, body {
 	width: 48px;
 }
 
-.main-container__title {
+.cal-heatmap {
+	width: 750px;
+	margin: 0 auto;
+}
+
+.app-header {
+	height: 64px;
+	background: rgba(66, 133, 244, 0.7);
+	padding: 0 30px;
+}
+
+.app-header__title {
 	display:inline-block;
 	height: 100%;
 	vertical-align: top;

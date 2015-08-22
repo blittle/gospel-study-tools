@@ -1,4 +1,5 @@
 import { HOST, ONE_MINUTE } from '../constants.js';
+import generateStudySessions from './generate';
 
 let token;
 
@@ -53,3 +54,8 @@ export function getAuthenticatedUser(token) {
 	})
 }
 
+window.generateStudyContent = function(count) {
+	generateStudySessions(count).forEach((content) => {
+		trySave(content);
+	})
+}

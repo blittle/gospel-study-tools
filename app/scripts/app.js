@@ -3,12 +3,9 @@ import { DAY } from './constants';
 
 import './app.css';
 
-console.log('hi')
-
 getDayAggregation(365).then(renderCalHeatmap)
 
 function renderCalHeatmap(response) {
-	debugger;
 	var calendar = new CalHeatMap();
 	calendar.init({
 		data: response.data,
@@ -16,27 +13,25 @@ function renderCalHeatmap(response) {
 		domain : "month",
 		subDomain : "day",
 		range : 12,
-		// domainGutter: 15,
-		// cellsize: 15,
+		domainGutter: 0,
+		domainMargin: 0,
+		itemSelector: '.cal-heatmap',
+		cellsize: 55,
 		// cellpadding: 3,
 		// cellradius: 5,
-		scale: [2, 10, 60, 180],
+		legend: [5, 30, 160, 180],
 		itemName: ["minute studied", "minutes studied"],
+		displayLegend: false,
 		cellLabel: {
 			empty: "You did not study on {date}",
 			filled: "You studied for {count} {name} on {date}"
 		},
-		scaleLabel: {
-			lower: "Belle journée, il y a eu moins de {min} {name}",
-			inner: "Pas mal, entre {down} et {up} {name}",
-			upper: "Peut faire mieux, plus de {max} {name}"
-		},
-		format: {
-			date: function(date) {
-				return moment(date).format("LL");
-			},
-			legend: null,
-		},
+		// format: {
+		// 	date: function(date) {
+		// 		return moment(date).format("LL");
+		// 	},
+		// 	legend: null,
+		// },
 		afterLoadData: (data) => {
 			var stats = {};
 			for (var d in data) {
