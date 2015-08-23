@@ -1,6 +1,6 @@
 import React from 'react';
 import { formatL1, formatScripture } from '../constants';
-import { msToTime } from '../utils';
+import { msToTime, getPlural } from '../utils';
 import moment from 'moment';
 
 export default React.createClass({

@@ -3,6 +3,7 @@ import React from 'react';
 import { getDayAggregation, getContent } from './data';
 import { DAY } from './constants';
 import ContentList from './components/ContentList';
+import HistoryTotals from './components/HistoryTotals';
 
 import './app.css';
 
@@ -44,6 +45,12 @@ function renderCalHeatmap(response) {
 			return stats;
 		}
 	});
+
+
+	React.render(
+		<HistoryTotals content={response.data}/>,
+	  document.getElementById('history-total')
+	)
 }
 
 function renderTopContent(response) {

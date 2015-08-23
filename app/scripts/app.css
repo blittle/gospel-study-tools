@@ -118,3 +118,34 @@ html, body {
 	text-overflow: ellipsis;
 	display: block;
 }
+
+.card__columns {
+	border-top: 1px solid #d8d8d8;
+}
+
+.card__columns__column {
+	display: inline-block;
+	vertical-align: top;
+	border-right: 1px solid #d8d8d8;
+	padding: 20px;
+	text-align: center;
+	width: 33%;
+}
+
+.card__columns__column > * {
+	display: block;
+	text-align: center;
+}
+
+.card__columns__column:last-child {
+	border-right: 0;
+}
+
+.contrib-number {
+	font-size: 20px;
+}
+
+.text-muted {
+	font-size: 10px;
+	color: #767676;
+}

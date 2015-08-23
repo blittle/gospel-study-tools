@@ -11,10 +11,11 @@ export function throttle(callback, limit) {
   }
 }
 
+export function getPlural(val) {
+	return val === 1 ? '': 's';
+}
+
 export function msToTime(duration) {
-		function getPlural(val) {
-			return val === 1 ? '': 's';
-		}
     var milliseconds = parseInt((duration%1000)/100)
         , seconds = parseInt((duration/1000)%60)
         , minutes = parseInt((duration/(1000*60))%60)
