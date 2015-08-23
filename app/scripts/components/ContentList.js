@@ -1,13 +1,14 @@
 import React from 'react';
 import { formatL1 } from '../constants';
 import { msToTime } from '../utils';
+import moment from 'moment';
 
 export default React.createClass({
 	render() {
 		return (
 			<div>
 				<div className='card__header'>
-					Popular Content
+					{this.props.title}
 				</div>
 				<div className='card__body'>
 					{this.renderChildren()}
@@ -18,6 +19,15 @@ export default React.createClass({
 
 	getTitle(content) {
 		return formatL1(content.content_l1.trim());
+	},
+
+	formatTime(content) {
+		if (this.props.relative) {
+			return moment(content.last_update).fromNow();
+		} else {
+			return msToTime(content.total_seconds * 1000);
+		}
+
 	},
 
 	renderChildren() {
@@ -36,7 +46,7 @@ export default React.createClass({
 						</div>
 					</div>
 					<div className='card__element__count'>
-						{msToTime(content.total_seconds * 1000)}
+						{this.formatTime(content)}
 					</div>
 				</div>
 			)

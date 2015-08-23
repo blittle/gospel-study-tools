@@ -11,8 +11,6 @@ export function formatL1(l1) {
 			return 'Doctrine and Covenants';
 		case 'pgp':
 			return 'Pearl of Great Price';
-		case 'pgp':
-			return 'Pearl of Great Price';
 		case 'nt':
 			return 'New Testament';
 		case 'ot':

@@ -27,10 +27,10 @@ export function getDayAggregation(count) {
 	});
 }
 
-export function getTopContent() {
+export function getContent() {
 	return new Promise((resolve, reject) => {
 		getAuthorization().then((token)  => {
-			fetch(HOST + `/study-content/top`, {
+			fetch(HOST + `/study-content`, {
 				method: 'get',
 				headers: {
 					'Authorization': token,

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { getDayAggregation, getTopContent } from './data';
+import { getDayAggregation, getContent } from './data';
 import { DAY } from './constants';
-import TopContent from './components/TopContent';
+import ContentList from './components/ContentList';
 
 import './app.css';
 
 getDayAggregation(365).then(renderCalHeatmap)
-getTopContent().then(renderTopContent);
+getContent().then(renderTopContent);
 
 function renderCalHeatmap(response) {
 	var calendar = new CalHeatMap();
@@ -23,7 +23,7 @@ function renderCalHeatmap(response) {
 		cellsize: 55,
 		// cellpadding: 3,
 		// cellradius: 5,
-		legend: [5, 30, 160, 180],
+		legend: [2, 45],
 		itemName: ["minute studied", "minutes studied"],
 		displayLegend: false,
 		cellLabel: {
@@ -48,8 +48,14 @@ function renderCalHeatmap(response) {
 
 function renderTopContent(response) {
 	const content = response.data;
+
 	React.render(
-		<TopContent content={content} />,
+		<ContentList content={content.top} title='Popular Content' />,
 	  document.getElementById('top-content')
+	);
+
+	React.render(
+		<ContentList content={content.recent} title='Recent Content' relative={true} />,
+	  document.getElementById('recent-content')
 	);
 }
