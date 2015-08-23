@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatL1 } from '../constants';
+import { formatL1, formatScripture } from '../constants';
 import { msToTime } from '../utils';
 import moment from 'moment';
 
@@ -18,7 +18,45 @@ export default React.createClass({
 	},
 
 	getTitle(content) {
-		return formatL1(content.content_l1.trim());
+		const type = content.content_type.trim();
+		if (type === 'SCRIPTURE') {
+			return formatL1(content.content_l1.trim());
+		} else if (type === 'ENSIGN') {
+			return `Ensign ${content.content_l2.trim()} ${content.content_l1.trim()}`;
+		} else if (type === 'MANUAL') {
+		} else if (type === 'GC') {
+			return `General Conference ${content.content_l2.trim()} ${content.content_l1.trim()}`;
+		}
+	},
+
+	getIcon(content) {
+		const type = content.content_type.trim();
+
+		if (type === 'SCRIPTURE') {
+			return 'fa fa-book';
+		}
+
+		if (type === 'ENSIGN') {
+			return 'fa fa-newspaper-o';
+		}
+
+		if (type === 'MANUAL') {
+			return 'fa fa-graduation-cap';
+		}
+
+		if (type === 'GC') {
+			return 'fa fa-users';
+		}
+	},
+
+	getSubTitle(content) {
+		const type = content.content_type.trim();
+
+		if (type === 'SCRIPTURE') {
+			return `${formatScripture(content.content_l2.trim())} - ${content.content_l3.trim()}`
+		}
+
+		return `${content.content_l3.trim()} - ${content.content_l4.trim()}`
 	},
 
 	formatTime(content) {
@@ -35,14 +73,14 @@ export default React.createClass({
 			return (
 				<div key={i} className='card__element'>
 					<div className='card__element__icon'>
-						<i className="fa fa-users"></i>
+						<i className={this.getIcon(content)}></i>
 					</div>
 					<div className='card__element__title'>
-						<div className='truncate'>
+						<div className='truncate' title={this.getTitle(content)}>
 							{this.getTitle(content)}
 						</div>
-						<div className='truncate'>
-							<a>{`${content.content_l2} - ${content.content_l3}`}</a>
+						<div className='truncate' title={this.getSubTitle(content)}>
+							<a>{this.getSubTitle(content)}</a>
 						</div>
 					</div>
 					<div className='card__element__count'>

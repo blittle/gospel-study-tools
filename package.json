@@ -4,6 +4,7 @@
   "dependencies": {
     "cal-heatmap": "^3.5.2",
     "d3": "^3.5.6",
+    "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "react": "^0.13.3"
   },
