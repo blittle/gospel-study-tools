@@ -4,6 +4,7 @@ import { getDayAggregation, getContent } from './data';
 import { DAY } from './constants';
 import ContentList from './components/ContentList';
 import HistoryTotals from './components/HistoryTotals';
+import { parseDate } from './utils';
 
 import './app.css';
 
@@ -40,7 +41,7 @@ function renderCalHeatmap(response) {
 		afterLoadData: (data) => {
 			var stats = {};
 			for (var d in data) {
-				stats[new Date(data[d].day).getTime() / 1000] = ( data[d].total_seconds / 60 ).toFixed(2) * 1;
+				stats[parseDate(data[d].day).getTime() / 1000] = ( data[d].total_seconds / 60 ).toFixed(2) * 1;
 			}
 			return stats;
 		}

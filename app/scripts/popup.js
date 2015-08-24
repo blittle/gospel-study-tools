@@ -1,5 +1,6 @@
 import '../bower_components/fetch/fetch.js';
 import { HOST } from './constants';
+import { parseDate } from './utils';
 import * as resource from './background/resource';
 
 console.log('\'Allo \'Allo! Popup');

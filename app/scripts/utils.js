@@ -29,3 +29,8 @@ export function msToTime(duration) {
 			return `${minutes} minute${getPlural(minutes)}`;
 		}
 }
+
+export function parseDate(date) {
+	let parsed = date.substring(0, date.indexOf('T')).split('-')
+	return new Date(parsed[0] * 1, ( parsed[1] * 1 ) - 1, parsed[2] * 1);
+}
