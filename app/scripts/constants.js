@@ -90,6 +90,8 @@ export const DAY = ONE_MINUTE * 60 * 24;
 export const HOST = "http://0.0.0.0:4567";
 
 export function formatL1(l1) {
+	l1 = l1.trim();
+
 	switch(l1) {
 		case 'bofm':
 			return 'Book of Mormon';
@@ -104,7 +106,22 @@ export function formatL1(l1) {
 	}
 }
 
+export function formatType(type) {
+	type = type.trim();
+
+	if (type === 'SCRIPTURE') {
+		return 'Scriptures';
+	} else if (type === 'ENSIGN') {
+		return `Ensign`;
+	} else if (type === 'MANUAL') {
+		return 'Manual'
+	} else if (type === 'GC') {
+		return `General Conference`;
+	}
+}
+
 export function formatScripture(key) {
+	key = key.trim();
 	if (scriptureMap[key]) return scriptureMap[key];
 	return capitalize(key);
 }

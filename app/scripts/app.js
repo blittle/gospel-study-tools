@@ -1,15 +1,17 @@
 import React from 'react';
+import { take } from 'lodash';
 
 import { getDayAggregation, getContent } from './data';
 import { DAY } from './constants';
 import ContentList from './components/ContentList';
 import HistoryTotals from './components/HistoryTotals';
 import { parseDate } from './utils';
+import { renderSunBurst } from './components/SunBurst';
 
 import './app.css';
 
 getDayAggregation(365).then(renderCalHeatmap)
-getContent().then(renderTopContent);
+getContent().then(renderContent);
 
 function renderCalHeatmap(response) {
 	var calendar = new CalHeatMap();
@@ -54,11 +56,16 @@ function renderCalHeatmap(response) {
 	)
 }
 
-function renderTopContent(response) {
+function renderContentBreakdown(response) {
+}
+
+function renderContent(response) {
 	const content = response.data;
 
+	renderSunBurst(response.data.top);
+
 	React.render(
-		<ContentList content={content.top} title='Popular Content' />,
+		<ContentList content={take(content.top, 5)} title='Popular Content' />,
 	  document.getElementById('top-content')
 	);
 
