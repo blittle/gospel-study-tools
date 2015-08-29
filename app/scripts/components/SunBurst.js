@@ -82,28 +82,51 @@ function buildStudyHierarchy(content) {
 	let groups = groupBy(content, (el) => formatType(el.content_type));
 
 	each(groups, (group, key) => {
-		let l1Groups = groupBy(group, (el) => formatL1(el.content_l1));
-		heirarch.children.push({
-			name: key,
-			children: map(l1Groups, (l1Group, key) => {
-				let l2Groups = groupBy(l1Group, (el) => formatScripture(el.content_l2));
 
-				return {
-					name: key,
-					children: map(l2Groups, (l2Group, key) => {
-						return {
-							name: key,
-							children: l2Group.map((el) => {
-								return {
-									name: key + ' ' + el.content_l3,
-									size: el.total_seconds
-								}
-							})
-						}
-					})
-				}
+		if (key === 'Scriptures') {
+			let l1Groups = groupBy(group, (el) => formatL1(el.content_l1));
+			heirarch.children.push({
+				name: key,
+				children: map(l1Groups, (l1Group, key) => {
+					let l2Groups = groupBy(l1Group, (el) => formatScripture(el.content_l2));
+					return {
+						name: key,
+						children: map(l2Groups, (l2Group, key) => {
+							return {
+								name: key,
+								children: l2Group.map((el) => {
+									return {
+										name: key + ' ' + el.content_l3,
+										size: el.total_seconds
+									}
+								})
+							}
+						})
+					}
+				})
 			})
-		})
+
+		} else {
+
+			let l1Groups = groupBy(group, (el) => `${el.content_l1} - ${el.content_l2}`);
+
+			heirarch.children.push({
+				name: key,
+				children: map(l1Groups, (l1Group, key) => {
+					let l2Groups = groupBy(l1Group, (el) => el.content_l4);
+					return {
+						name: key,
+						children: map(l2Groups, (l2Group, key) => {
+							return {
+								name: key,
+								size: _.reduce(l2Group, (total, el) => total + el.total_seconds, 0)
+							}
+						})
+					}
+				})
+			});
+
+		}
 	})
 
 	return heirarch;

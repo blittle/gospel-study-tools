@@ -11,16 +11,16 @@ export default {
 		}
 	},
 
-	manual: {
-		regex: /\/manual\/(.+)\/(.+)/,
-		getResource: function(match) {
-			return {
-				type: "MANUAL",
-				l1: match[1],
-				l2: match[2]
-			}
-		}
-	},
+	// manual: {
+	// 	regex: /\/manual\/(.+)\/(.+)/,
+	// 	getResource: function(match) {
+	// 		return {
+	// 			type: "MANUAL",
+	// 			l1: match[1],
+	// 			l2: match[2]
+	// 		}
+	// 	}
+	// },
 
 	conference: {
 		regex: /\/general-conference\/(\d+)\/(\d+)\/(.+)/,
