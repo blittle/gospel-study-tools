@@ -9,7 +9,7 @@ var radius = Math.min(width, height) / 2;
 
 // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
 var b = {
-	w: 75,
+	w: 150,
 	h: 30,
 	s: 3,
 	t: 10
@@ -17,12 +17,16 @@ var b = {
 
 // Mapping of step names to colors.
 var colors = {
-	"Scriptures": "#5687d1",
-	"Book of Mormon": "#7b615c",
-	"Moroni": "#de783b",
-	"1 Nephi": "#6ab975",
-	"Mosiah": "#a173d1",
-	"Alama": "#bbbbbb"
+	"Scriptures": "#35478C",
+	"Scriptures L2": "#4E7AC7",
+	"Scriptures L3": "#7FB2F0",
+	"Scriptures L4": "#ADD5F7",
+	"General Conference": "#5C0002",
+	"General Conference L2": "#94090D",
+	"General Conference L3": "#D40D12",
+	"Ensign": "#167F39",
+	"Ensign L2": "#45BF55",
+	"Ensign L3": "#96ED89"
 };
 
 // Total size of all segments; we set this later, after loading the data.
@@ -78,23 +82,29 @@ function buildStudyHierarchy(content) {
 
 	each(groups, (group, key) => {
 
+		let rootColor = key;
+
 		if (key === 'Scriptures') {
 			// Group by primary book type (Book of Mormon)
 			let l1Groups = groupBy(group, (el) => formatL1(el.content_l1));
 			heirarch.children.push({
 				name: key,
+				color: rootColor,
 				children: map(l1Groups, (l1Group, key) => {
 					// Group by sub book type (Alma)
 					let l2Groups = groupBy(l1Group, (el) => formatScripture(el.content_l2));
 					return {
 						name: key,
+						color: rootColor + ' L2',
 						children: map(l2Groups, (l2Group, key) => {
 							return {
 								name: key,
+								color: rootColor + ' L3',
 								children: l2Group.map((el) => {
 									// Leaf nodes are book and chapter (Alma 32)
 									return {
 										name: key + ' ' + el.content_l3,
+										color: rootColor + ' L4',
 										size: el.total_seconds
 									}
 								})
@@ -106,20 +116,24 @@ function buildStudyHierarchy(content) {
 
 		} else {
 
+
 			// These should currently only be General Conference and Ensign
 			// Group by Year - Month
 			let l1Groups = groupBy(group, (el) => `${el.content_l1} - ${el.content_l2}`);
 
 			heirarch.children.push({
 				name: key,
+				color: rootColor,
 				children: map(l1Groups, (l1Group, key) => {
 					// Group by author name
 					let l2Groups = groupBy(l1Group, (el) => el.content_l4);
 					return {
 						name: key,
+						color: rootColor + ' L2',
 						children: map(l2Groups, (l2Group, key) => {
 							return {
 								name: key,
+								color: rootColor + ' L3',
 								// There could be multiple study entries of the same author, find a total sum
 								size: _.reduce(l2Group, (total, el) => total + el.total_seconds, 0)
 							}
@@ -139,8 +153,6 @@ function createVisualization(json) {
 
 	// Basic setup of page elements.
 	initializeBreadcrumbTrail();
-	drawLegend();
-	d3.select("#togglelegend").on("click", toggleLegend);
 
 	// Bounding circle underneath the sunburst, to make it easier to detect
 	// when the mouse leaves the parent g.
@@ -163,7 +175,8 @@ function createVisualization(json) {
 		.attr("d", arc)
 		.attr("fill-rule", "evenodd")
 		.style("fill", function(d) {
-			return colors[d.name];
+			debugger;
+			return colors[d.color];
 		})
 		.style("opacity", 1)
 		.on("mouseover", mouseover);
@@ -186,6 +199,9 @@ function mouseover(d) {
 
 	d3.select("#percentage")
 		.text(percentageString);
+
+	d3.select("#title")
+		.text(d.name)
 
 	d3.select("#explanation")
 		.style("visibility", "");
@@ -282,7 +298,7 @@ function updateBreadcrumbs(nodeArray, percentageString) {
 	entering.append("svg:polygon")
 		.attr("points", breadcrumbPoints)
 		.style("fill", function(d) {
-			return colors[d.name];
+			return colors[d.color];
 		});
 
 	entering.append("svg:text")
