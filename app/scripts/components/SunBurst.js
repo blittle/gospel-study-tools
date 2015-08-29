@@ -73,21 +73,18 @@ function buildStudyHierarchy(content) {
 		children: []
 	};
 
-	// content_l1: "bofm "
-	// content_l2: "mosiah "
-	// content_l3: "14 "
-	// content_l4: " "
-	// content_type: "SCRIPTURE "
-
+	// Initially group by content study type
 	let groups = groupBy(content, (el) => formatType(el.content_type));
 
 	each(groups, (group, key) => {
 
 		if (key === 'Scriptures') {
+			// Group by primary book type (Book of Mormon)
 			let l1Groups = groupBy(group, (el) => formatL1(el.content_l1));
 			heirarch.children.push({
 				name: key,
 				children: map(l1Groups, (l1Group, key) => {
+					// Group by sub book type (Alma)
 					let l2Groups = groupBy(l1Group, (el) => formatScripture(el.content_l2));
 					return {
 						name: key,
@@ -95,6 +92,7 @@ function buildStudyHierarchy(content) {
 							return {
 								name: key,
 								children: l2Group.map((el) => {
+									// Leaf nodes are book and chapter (Alma 32)
 									return {
 										name: key + ' ' + el.content_l3,
 										size: el.total_seconds
@@ -108,17 +106,21 @@ function buildStudyHierarchy(content) {
 
 		} else {
 
+			// These should currently only be General Conference and Ensign
+			// Group by Year - Month
 			let l1Groups = groupBy(group, (el) => `${el.content_l1} - ${el.content_l2}`);
 
 			heirarch.children.push({
 				name: key,
 				children: map(l1Groups, (l1Group, key) => {
+					// Group by author name
 					let l2Groups = groupBy(l1Group, (el) => el.content_l4);
 					return {
 						name: key,
 						children: map(l2Groups, (l2Group, key) => {
 							return {
 								name: key,
+								// There could be multiple study entries of the same author, find a total sum
 								size: _.reduce(l2Group, (total, el) => total + el.total_seconds, 0)
 							}
 						})
