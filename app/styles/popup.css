@@ -26,7 +26,7 @@
 .time-counter__value {
 	font-size: 45px;
 	font-weight: bold;
-	color: #333;
+	color: #193441;
 }
 
 .time-counter__label {
@@ -47,9 +47,8 @@
 
 .time-title {
   text-align: center;
-	font-weight: bold;
-	font-family: 'Cabin Condensed', sans-serif;
-	color: #0e83cd;
+	font-family: 'Montserrat', sans-serif;
+	color: #193441;
 	font-size: 18px;
 	margin: 8px 0;
 }
@@ -79,9 +78,9 @@
 	border-radius: 0;
 	box-sizing: 0;
 	width: 100%;
-	background: #4285f4;
+	background: #3E606F;
 	border: 0;
-	font-family: 'Cabin Condensed', sans-serif;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .btn:after {
@@ -94,7 +93,7 @@
 }
 
 .btn-1a:hover, .btn-1a:active {
-	background: #4DAEEA;
+	background: #193441;
 	color: white;
 }
 
