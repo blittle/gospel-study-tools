@@ -2,13 +2,10 @@ import '../bower_components/fetch/fetch.js';
 import { HOST } from './constants';
 import { parseDate } from './utils';
 import * as resource from './background/resource';
-
-console.log('\'Allo \'Allo! Popup');
+import { redirectToLogin } from './data';
 
 document.getElementById('login').addEventListener('click', () => {
-	chrome.tabs.create({
-		url: HOST + '/authenticate/google'
-	});
+	redirectToLogin();
 });
 
 document.getElementById('view-stats').addEventListener('click', () => {

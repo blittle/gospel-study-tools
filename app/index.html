@@ -10,49 +10,81 @@
 		<link href='bower_components/font-awesome/css/font-awesome.min.css' rel='stylesheet'>
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/cal-heatmap/cal-heatmap.css" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans|Cabin+Condensed' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="styles/app.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body>
-		<div class="app-header">
-			<div class="avatar">
-				<img class="avatar__img" src="images/avatar.jpg">
+		<div class="auth">
+			<img class="auth__logo-image" src="/images/compass-light.svg"/>
+			<div class="auth__logo">
+				Gospel Study Tools
 			</div>
-			<div class='app-header__title'>
-				BRET LITTLE
+			<div class="auth__message">
+				Please <a href="http://0.0.0.0:4567/authenticate/google">Login</a> to access your study information
 			</div>
 		</div>
-		<div class='main-container'>
-			<div class='cards'>
-				<div class='card card--half' id='top-content'>
+		<div class="main-app">
+			<div class="app-header">
+				<div class="avatar" id="avatar"></div>
+				<div class='app-header__title'>
+					<span>
+						Gospel Study Tools
+					</span>
+					<!-- <a class="app&#45;header__link">Challenges</a> -->
+					<!-- <a class="app&#45;header__link">Badges</a> -->
 				</div>
-				<div class='card card--half' id='recent-content'>
-				</div>
+				<img src="/images/compass-light.svg" class="app-header__logo">
 			</div>
-			<div>
-				<div class='card'>
-					<div class='card__header'>
-						Study History
+			<div class='main-container'>
+				<div class='cards'>
+					<div class='card card--half' id='top-content'>
 					</div>
-					<div class='card__body'>
-						<div class="cal-heatmap"></div>
-						<div id='history-total'></div>
+					<div class='card card--half' id='recent-content'>
 					</div>
 				</div>
-			</div>
-			<div class='cards'>
-				<div class='card'>
-					<div class='card__header'>
-						Study Breakdown
+				<div>
+					<div class='card'>
+						<div class='card__header'>
+							Study History
+						</div>
+						<div class='card__body'>
+							<div class="cal-heatmap"></div>
+							<div id='history-total'></div>
+						</div>
 					</div>
-					<div class='card__body'>
-						<div id="main">
-							<div id="sequence"></div>
-							<div id="chart">
-								<div id="explanation" style="visibility: hidden;">
-									<span id="percentage"></span><br/>
-									study of <span id="title"></span>
+				</div>
+				<!-- <div class='cards'> -->
+					<!-- 	<div class='card card&#45;&#45;half'> -->
+						<!-- 		<div class='card__header'> -->
+							<!-- 			Challenges -->
+							<!-- 		</div> -->
+						<!-- 		<div class='card__body' id='challenges'> -->
+							<!-- 		</div> -->
+						<!-- 	</div> -->
+					<!-- 	<div class='card card&#45;&#45;half'> -->
+						<!-- 		<div class='card__header'> -->
+							<!-- 			Badges -->
+							<!-- 		</div> -->
+						<!-- 		<div class='card__body' id='badges'> -->
+							<!-- 		</div> -->
+						<!-- 	</div> -->
+					<!-- </div> -->
+				<div class='cards'>
+					<div class='card'>
+						<div class='card__header'>
+							Study Breakdown
+						</div>
+						<div class='card__body'>
+							<div id="main">
+								<div id="sequence"></div>
+								<div id="chart">
+									<div id="explanation" style="visibility: hidden;">
+										<span id="percentage"></span><br/>
+										study of <span id="title"></span>
+									</div>
 								</div>
 							</div>
 						</div>

@@ -114,7 +114,6 @@ export default React.createClass({
 	},
 
 	getCurrentStreak() {
-		debugger;
 		const streak = getCurrentStreak(this.props.content);
 
 		if (streak.length) {

@@ -17,16 +17,16 @@ var b = {
 
 // Mapping of step names to colors.
 var colors = {
-	"Scriptures": "#35478C",
-	"Scriptures L2": "#4E7AC7",
-	"Scriptures L3": "#7FB2F0",
-	"Scriptures L4": "#ADD5F7",
-	"General Conference": "#5C0002",
-	"General Conference L2": "#94090D",
-	"General Conference L3": "#D40D12",
-	"Ensign": "#167F39",
-	"Ensign L2": "#45BF55",
-	"Ensign L3": "#96ED89"
+	"Scriptures": "#193441",
+	"Scriptures L2": "#3E606F",
+	"Scriptures L3": "#91AA9D",
+	"Scriptures L4": "#D1DBBD",
+	"General Conference": "#002F2F",
+	"General Conference L2": "#046380",
+	"General Conference L3": "#EFECCA",
+	"Ensign": "#33332D",
+	"Ensign L2": "#5B7876",
+	"Ensign L3": "#8F9E8B"
 };
 
 // Total size of all segments; we set this later, after loading the data.
@@ -175,7 +175,6 @@ function createVisualization(json) {
 		.attr("d", arc)
 		.attr("fill-rule", "evenodd")
 		.style("fill", function(d) {
-			debugger;
 			return colors[d.color];
 		})
 		.style("opacity", 1)

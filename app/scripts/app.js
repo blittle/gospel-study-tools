@@ -1,20 +1,44 @@
 import React from 'react';
-import { take } from 'lodash';
+import { take, each } from 'lodash';
 
-import { getDayAggregation, getContent } from './data';
+import Avatar from './components/Avatar';
+import { getDayAggregation, getContent, getAuthenticatedUser } from './data';
 import { DAY } from './constants';
 import ContentList from './components/ContentList';
 import HistoryTotals from './components/HistoryTotals';
 import { parseDate } from './utils';
 import { renderSunBurst } from './components/SunBurst';
+import Challenges from './components/Challenges';
 
 import './app.css';
 
 getDayAggregation(365).then(renderCalHeatmap)
+getAuthenticatedUser().then(renderAvatar)
 getContent().then(renderContent);
 
 function renderCalHeatmap(response) {
 	var calendar = new CalHeatMap();
+
+	let highestValue = 0;
+
+	each(response.data, (d) => {
+		if (d.total_seconds > highestValue) highestValue = d.total_seconds;
+	});
+
+	highestValue = (highestValue - (.35 * highestValue)) / 60;
+
+	let legend = [
+		highestValue / 64,
+		highestValue / 32,
+		highestValue / 16,
+		highestValue / 8,
+		highestValue / 4,
+		highestValue / 2,
+		highestValue
+	]
+
+	console.log(legend);
+
 	calendar.init({
 		data: response.data,
 		start: new Date(new Date().getTime() - (DAY * 335)),
@@ -27,9 +51,14 @@ function renderCalHeatmap(response) {
 		cellsize: 55,
 		// cellpadding: 3,
 		// cellradius: 5,
-		legend: [2, 45],
+		legend: legend,
 		itemName: ["minute studied", "minutes studied"],
 		displayLegend: false,
+		legendColors: {
+			min: "#deebf7",
+			max: "#3E606F",
+			empty: "white"
+		},
 		cellLabel: {
 			empty: "You did not study on {date}",
 			filled: "You studied for {count} {name} on {date}"
@@ -62,6 +91,7 @@ function renderContentBreakdown(response) {
 function renderContent(response) {
 	const content = response.data;
 
+	// Challenges(response.data);
 	renderSunBurst(response.data.top);
 
 	React.render(
@@ -72,5 +102,12 @@ function renderContent(response) {
 	React.render(
 		<ContentList content={content.recent} title='Recent Content' relative={true} />,
 	  document.getElementById('recent-content')
+	);
+}
+
+function renderAvatar(user) {
+	React.render(
+		<Avatar user={user}/>,
+	  document.getElementById('avatar')
 	);
 }

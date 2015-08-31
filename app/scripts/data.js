@@ -9,6 +9,14 @@ function getAuthorization() {
 	});
 }
 
+function checkResponse(response) {
+	if (response.status === 401) {
+		showAuthErrorLogin()
+		throw new Error('Not authorized');
+	}
+	return response.json();
+}
+
 export function getDayAggregation(count) {
 	return new Promise((resolve, reject) => {
 		getAuthorization().then((token) => {
@@ -20,7 +28,7 @@ export function getDayAggregation(count) {
 				}
 			})
 			.catch(reject)
-			.then(response => response.json())
+			.then(checkResponse)
 			.catch(reject)
 			.then(resolve);
 		})
@@ -38,9 +46,50 @@ export function getContent() {
 				}
 			})
 			.catch(reject)
-			.then(response => response.json())
+			.then(checkResponse)
 			.catch(reject)
 			.then(resolve);
 		})
 	});
+}
+
+export function getAuthenticatedUser() {
+	return new Promise((resolve, reject) => {
+		getAuthorization().then((token) => {
+			fetch(HOST + `/authenticated-user`, {
+				method: 'get',
+				headers: {
+					'Authorization': token,
+					'Content-Type': 'application/json'
+				}
+			})
+			.catch(reject)
+			.then(checkResponse)
+			.catch(reject)
+			.then(resolve);
+		})
+	})
+}
+
+export function logoutUser() {
+	return new Promise((resolve, reject) => {
+		getAuthorization().then((token) => {
+			fetch(HOST + `/authenticated-user/logout`, {
+				method: 'post',
+				headers: {
+					'Authorization': token,
+					'Content-Type': 'application/json'
+				}
+			})
+			.catch(reject)
+			.then(checkResponse)
+			.catch(reject)
+			.then(resolve);
+		})
+	})
+}
+
+export function showAuthErrorLogin() {
+	document.querySelector('.auth').className = 'auth show';
+	document.querySelector('.main-app').className = 'main-app hidden';
 }
