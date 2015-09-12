@@ -24,7 +24,9 @@ if (storageSession) {
 
 chrome.runtime.onMessage.addListener(
 	(request, sender, sendResponse) => {
-		if (request.GST_AUTH_TOKEN) {
+		if (request.RENDER_POPUP) {
+			checkAuthentication();
+		} else if (request.GST_AUTH_TOKEN) {
 			chrome.storage.sync.set({
 				'GST_AUTH_TOKEN': request.GST_AUTH_TOKEN
 			}, () => {
@@ -33,6 +35,8 @@ chrome.runtime.onMessage.addListener(
 			});
 
 		} else {
+
+			checkAuthentication();
 
 			let session = sessions[CURRENT_SESSION];
 
@@ -54,13 +58,6 @@ chrome.runtime.onMessage.addListener(
 		}
 	});
 
-chrome.browserAction.onClicked.addListener((tab) => {
-	if (!isAuthenticated) {
-		chrome.tabs.create({
-			url: HOST + '/api/authenticate/google'
-		});
-	}
-});
 
 function startSessionTimeout() {
 	if (sessionTimeout) clearTimeout(sessionTimeout);

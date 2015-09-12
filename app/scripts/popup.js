@@ -18,6 +18,8 @@ function handleError(error) {
 	document.querySelector('.gst-popup-auth').style.display = 'block';
 }
 
+chrome.runtime.sendMessage({RENDER_POPUP: true});
+
 chrome.storage.sync.get('GST_AUTH_TOKEN', function(result) {
 	resource.getAuthenticatedUser(result.GST_AUTH_TOKEN)
 	.catch(() => handleError)
