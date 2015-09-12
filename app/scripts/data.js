@@ -20,7 +20,7 @@ function checkResponse(response) {
 export function getDayAggregation(count) {
 	return new Promise((resolve, reject) => {
 		getAuthorization().then((token) => {
-			fetch(HOST + `/study-content/day-aggregation/${count}`, {
+			fetch(HOST + `/api/study-content/day-aggregation/${count}`, {
 				method: 'get',
 				headers: {
 					'Authorization': token,
@@ -38,7 +38,7 @@ export function getDayAggregation(count) {
 export function getContent() {
 	return new Promise((resolve, reject) => {
 		getAuthorization().then((token)  => {
-			fetch(HOST + `/study-content`, {
+			fetch(HOST + `/api/study-content`, {
 				method: 'get',
 				headers: {
 					'Authorization': token,
@@ -56,7 +56,7 @@ export function getContent() {
 export function getAuthenticatedUser() {
 	return new Promise((resolve, reject) => {
 		getAuthorization().then((token) => {
-			fetch(HOST + `/authenticated-user`, {
+			fetch(HOST + `/api/authenticated-user`, {
 				method: 'get',
 				headers: {
 					'Authorization': token,
@@ -74,7 +74,7 @@ export function getAuthenticatedUser() {
 export function logoutUser() {
 	return new Promise((resolve, reject) => {
 		getAuthorization().then((token) => {
-			fetch(HOST + `/authenticated-user/logout`, {
+			fetch(HOST + `/api/authenticated-user/logout`, {
 				method: 'post',
 				headers: {
 					'Authorization': token,

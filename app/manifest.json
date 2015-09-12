@@ -45,8 +45,8 @@
     },
     {
       "matches": [
-        "http://localhost:4567/*",
-        "https://localhost:4567/*",
+        "http://gst.dev/*",
+        "https://gst.dev/*",
         "https://gospelstudy.tools/*",
         "http://gospelstudy.tools/*"
       ],

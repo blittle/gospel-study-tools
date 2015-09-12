@@ -27,7 +27,11 @@ chrome.runtime.onMessage.addListener(
 		if (request.GST_AUTH_TOKEN) {
 			chrome.storage.sync.set({
 				'GST_AUTH_TOKEN': request.GST_AUTH_TOKEN
-			}, checkAuthentication);
+			}, () => {
+				checkAuthentication();
+				chrome.tabs.create({ url: "index.html" });
+			});
+
 		} else {
 
 			let session = sessions[CURRENT_SESSION];
@@ -53,7 +57,7 @@ chrome.runtime.onMessage.addListener(
 chrome.browserAction.onClicked.addListener((tab) => {
 	if (!isAuthenticated) {
 		chrome.tabs.create({
-			url: HOST + '/authenticate/google'
+			url: HOST + '/api/authenticate/google'
 		});
 	}
 });

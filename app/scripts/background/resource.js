@@ -25,7 +25,7 @@ function saveSessionQueue() {
 }
 
 function trySave(studySession) {
-	return fetch(HOST + '/study-sessions', {
+	return fetch(HOST + '/api/study-sessions', {
 		method: 'post',
 		headers: {
 			Authorization: token,
@@ -45,7 +45,7 @@ export function saveSession(studySession) {
 }
 
 export function getAuthenticatedUser(token) {
-	return fetch(HOST + '/authenticated-user', {
+	return fetch(HOST + '/api/authenticated-user', {
 		method: 'get',
 		headers: {
 			'Authorization': token,

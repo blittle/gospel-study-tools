@@ -2,14 +2,15 @@ import '../bower_components/fetch/fetch.js';
 import { HOST } from './constants';
 import { parseDate } from './utils';
 import * as resource from './background/resource';
-import { redirectToLogin } from './data';
+import { showAuthErrorLogin } from './data';
 
 document.getElementById('login').addEventListener('click', () => {
-	redirectToLogin();
+	chrome.tabs.create({ url: "index.html" });
 });
 
 document.getElementById('view-stats').addEventListener('click', () => {
-	chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
+	chrome.tabs.create({ url: "index.html" });
+	// chrome.tabs.create({ 'url': 'chrome://extensions/?options=' + chrome.runtime.id });
 });
 
 function handleError(error) {
@@ -31,7 +32,7 @@ chrome.storage.sync.get('GST_AUTH_TOKEN', function(result) {
 			return handleError(json.error);
 		}
 
-		fetch(HOST + '/study-content/day-aggregation/1', {
+		fetch(HOST + '/api/study-content/day-aggregation/1', {
 			method: 'get',
 			headers: {
 				'Authorization': result.GST_AUTH_TOKEN,

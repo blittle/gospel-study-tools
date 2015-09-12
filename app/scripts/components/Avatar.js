@@ -1,7 +1,7 @@
 import React from 'react';
 import { HOST } from '../constants';
 import './Avatar.css';
-import { logoutUser, redirectToLogin } from '../data';
+import { logoutUser, showAuthErrorLogin } from '../data';
 
 function findAncestor (el, cls) {
 	while ((el = el.parentElement) && !el.classList.contains(cls));
@@ -111,7 +111,7 @@ export default class Avatar extends React.Component {
 
 	logout() {
 		logoutUser().then((resp) => {
-			window.location = HOST;
+			showAuthErrorLogin();
 		})
 	}
 }
