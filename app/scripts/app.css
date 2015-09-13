@@ -29,6 +29,10 @@ html, body {
 	/* background-position: 0 -216px; */
 }
 
+.main-container.\+hidden {
+	display: none;
+}
+
 .cal-heatmap {
 	width: 750px;
 	margin: 0 auto;
@@ -202,4 +206,29 @@ html, body {
 .auth__message a:hover {
 	color: #D1DBBD;
 	text-decoration: none;
+}
+
+.empty {
+	display: none;
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 60px;
+}
+
+.empty.\+visible {
+	display: block;
+}
+
+.empty__image {
+	width: 300px;
+}
+
+.empty__head {
+	margin-top: 20px;
+	font-size: 30px;
+}
+
+.empty__sub {
+	margin-top: 16px;
 }

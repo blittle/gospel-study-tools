@@ -17,6 +17,10 @@ getAuthenticatedUser().then(renderAvatar)
 getContent().then(renderContent);
 
 function renderCalHeatmap(response) {
+	if (!response.data || !response.data.length) {
+		return
+	}
+
 	var calendar = new CalHeatMap();
 
 	let highestValue = 0;
@@ -85,11 +89,14 @@ function renderCalHeatmap(response) {
 	)
 }
 
-function renderContentBreakdown(response) {
-}
-
 function renderContent(response) {
 	const content = response.data;
+
+	if (!content.top || !content.top.length) {
+		document.querySelector('.empty').className = 'empty +visible';
+		document.querySelector('.main-container').className = 'main-container +hidden'
+		return;
+	}
 
 	// Challenges(response.data);
 	renderSunBurst(response.data.top);
