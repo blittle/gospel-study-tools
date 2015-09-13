@@ -31,7 +31,7 @@ export function getDayAggregation(count) {
 			.then(checkResponse)
 			.catch(reject)
 			.then(resolve);
-		})
+		}).catch(showAuthErrorLogin)
 	});
 }
 
@@ -49,7 +49,7 @@ export function getContent() {
 			.then(checkResponse)
 			.catch(reject)
 			.then(resolve);
-		})
+		}).catch(showAuthErrorLogin)
 	});
 }
 
@@ -67,7 +67,7 @@ export function getAuthenticatedUser() {
 			.then(checkResponse)
 			.catch(reject)
 			.then(resolve);
-		})
+		}).catch(showAuthErrorLogin)
 	})
 }
 
@@ -85,7 +85,7 @@ export function logoutUser() {
 			.then(checkResponse)
 			.catch(reject)
 			.then(resolve);
-		})
+		}).catch(showAuthErrorLogin)
 	})
 }
 
