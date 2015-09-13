@@ -87,7 +87,7 @@ const scriptureMap = {
 export const ONE_MINUTE = 60 * 1000;
 export const THREE_MINUTES = 3 * 60 * 1000;
 export const DAY = ONE_MINUTE * 60 * 24;
-export const HOST = "https://www.gst.dev";
+export const HOST = "https://www.gospelstudy.tools";
 
 export function formatL1(l1) {
 	l1 = l1.trim();
