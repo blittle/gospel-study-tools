@@ -15,7 +15,7 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-			{ test: /\.js$/, exclude: /node_modules|bower_components/, loader: "babel-loader"},
+			{ test: /\.js$/, exclude: /node_modules|bower_components/, loader: "babel-loader?stage=1"},
 			{ test: /\.css$/, loader: "style-loader!css-loader?root=." },
 			{ test: /\.jpg$/, loader: "url-loader" },
 			{ test: /\.png$/, loader: "file-loader" }
