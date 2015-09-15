@@ -1,6 +1,6 @@
 {
   "name": "Gospel Study Tools",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "manifest_version": 2,
 	"description": "Tools for encouraging increased gospel study through analytics, challenges, badges, games, and more.",
   "permissions": [
