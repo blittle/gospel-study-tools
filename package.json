@@ -1,6 +1,9 @@
 {
   "name": "gospel-study-tools",
   "version": "0.0.0",
+	"scripts": {
+		"build": "zip -r app.zip app"
+	},
   "dependencies": {
     "cal-heatmap": "^3.5.2",
     "d3": "^3.5.6",

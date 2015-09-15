@@ -89,6 +89,24 @@ export function logoutUser() {
 	})
 }
 
+export function deleteUser() {
+	return new Promise((resolve, reject) => {
+		getAuthorization().then((token) => {
+			fetch(HOST + `/api/authenticated-user`, {
+				method: 'delete',
+				headers: {
+					'Authorization': token,
+					'Content-Type': 'application/json'
+				}
+			})
+			.catch(reject)
+			.then(checkResponse)
+			.catch(reject)
+			.then(resolve);
+		}).catch(showAuthErrorLogin)
+	})
+}
+
 export function showAuthErrorLogin() {
 	document.querySelector('.auth').className = 'auth show';
 	document.querySelector('.main-app').className = 'main-app hidden';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { HOST } from '../constants';
 import './Avatar.css';
-import { logoutUser, showAuthErrorLogin } from '../data';
+import { logoutUser, showAuthErrorLogin, deleteUser } from '../data';
 
 function findAncestor (el, cls) {
 	while ((el = el.parentElement) && !el.classList.contains(cls));
@@ -60,7 +60,7 @@ export default class Avatar extends React.Component {
 									<input type="input" className="form-control" value={name} disabled/>
 								</div>
 								<button onClick={this.closeSettings.bind(this)} type="button" className="btn btn-default">CLOSE</button>
-								<button type="button" className="btn btn-default" style={{'margin-left': '20px'}}>DELETE MY ACCOUNT</button>
+								<button onClick={this.deleteAccount.bind(this)} type="button" className="btn btn-default" style={{'margin-left': '20px'}}>DELETE MY ACCOUNT</button>
 							</form>
 						</div>
 					</div>
@@ -107,6 +107,14 @@ export default class Avatar extends React.Component {
 		this.setState({
 			settingsDisplayed: false
 		})
+	}
+
+	deleteAccount() {
+		if (confirm('Are you sure? Your account and all associated data will be deleted. This is not reversable!')) {
+			deleteUser().then((resp) => {
+				showAuthErrorLogin();
+			})
+		}
 	}
 
 	logout() {
