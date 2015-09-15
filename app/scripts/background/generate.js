@@ -163,7 +163,10 @@ function getEnsignStudyElment() {
 function getStudySession() {
 	var session = getRandomTime()
 	session.resources = _.range(20).map(i => {
-		return _.sample([getScriptureStudyElement(), getEnsignStudyElment(), getGCStudyElement()])
+		return {
+			..._.sample([getScriptureStudyElement(), getEnsignStudyElment(), getGCStudyElement()]),
+			href: "https://www.lds.org/scriptures/dc-testament/dc/20"
+		}
 	});
 	return session;
 }

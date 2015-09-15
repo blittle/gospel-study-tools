@@ -24,7 +24,10 @@ function getResourceFromURL(url) {
 		if (resourceHandlers.hasOwnProperty(name)) {
 			var handler = resourceHandlers[name];
 			if (handler.regex.test(url)) {
-				return handler.getResource.call(null, handler.regex.exec(url))
+				return {
+					...handler.getResource.call(null, handler.regex.exec(url)),
+					href: window.location.href
+				}
 			}
 		}
 	}

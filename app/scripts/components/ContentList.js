@@ -80,7 +80,7 @@ export default React.createClass({
 							{this.getTitle(content)}
 						</div>
 						<div className='truncate' title={this.getSubTitle(content)}>
-							<a>{this.getSubTitle(content)}</a>
+							<a href={content.href}>{this.getSubTitle(content)}</a>
 						</div>
 					</div>
 					<div className='card__element__count'>
