@@ -26,6 +26,25 @@ chrome.runtime.onMessage.addListener(
 	(request, sender, sendResponse) => {
 		if (request.RENDER_POPUP) {
 			checkAuthentication();
+			let session = sessions[CURRENT_SESSION];
+
+			if (session) {
+				// The session in memory has not been sent to the server,
+				// send it to the popup window so it can accurately render
+				// the daily study amount
+				chrome.runtime.sendMessage({
+					INMEMORY_STUDY_TIME: true,
+					time: ( new Date().getTime() ) - session.getStartTime()
+				});
+			} else {
+				chrome.runtime.sendMessage({
+					INMEMORY_STUDY_TIME: true,
+					time: 0
+				});
+			}
+
+			updateIcon();
+
 		} else if (request.GST_AUTH_TOKEN) {
 			chrome.storage.sync.set({
 				'GST_AUTH_TOKEN': request.GST_AUTH_TOKEN
@@ -34,7 +53,7 @@ chrome.runtime.onMessage.addListener(
 				chrome.tabs.create({ url: "index.html" });
 			});
 
-		} else {
+		} else if(!request.INMEMORY_STUDY_TIME) {
 
 			checkAuthentication();
 

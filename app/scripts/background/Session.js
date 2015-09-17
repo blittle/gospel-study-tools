@@ -38,8 +38,8 @@ export default class Session {
 	}
 
 	getProcessedSession() {
-		let startTime = this._getStartTime();
-		let endTime = this._getEndTime();
+		let startTime = this.getStartTime();
+		let endTime = this.getEndTime();
 
 		return {
 			resources: this._fixResourceTimings(
@@ -51,7 +51,7 @@ export default class Session {
 		};
 	}
 
-	_getEndTime() {
+	getEndTime() {
 		return _.reduce(this.resources, (highestFound, resourceTypes) => {
 			let end = resourceTypes.reduce((found, resource) => {
 				if (!found || resource.end > found) {
@@ -68,7 +68,7 @@ export default class Session {
 		}, null);
 	}
 
-	_getStartTime() {
+	getStartTime() {
 		return _.reduce(this.resources, (lowestFound, resourceTypes) => {
 			let start = resourceTypes.reduce((found, resource) => {
 				if (!found || resource.start < found) {

@@ -18,7 +18,15 @@ function handleError(error) {
 	document.querySelector('.gst-popup-auth').style.display = 'block';
 }
 
-chrome.runtime.sendMessage({RENDER_POPUP: true});
+let currentSessionTime = new Promise((success, reject) => {
+	chrome.runtime.onMessage.addListener((request, sender) => {
+		if (request.INMEMORY_STUDY_TIME) {
+			success(request.time);
+		}
+	});
+
+	chrome.runtime.sendMessage({RENDER_POPUP: true});
+});
 
 chrome.storage.sync.get('GST_AUTH_TOKEN', function(result) {
 	resource.getAuthenticatedUser(result.GST_AUTH_TOKEN)
@@ -45,13 +53,20 @@ chrome.storage.sync.get('GST_AUTH_TOKEN', function(result) {
 		.then(response => response.json())
 		.then((json) => {
 
-			document.querySelector('.gst-popup').style.display = 'block';
-			document.querySelector('.gst-popup-auth').style.display = 'none';
+			currentSessionTime.then((time) => {
+				time = time / 1000;
 
-			const {hours, minutes, seconds} = getHoursMinutesSeconds(json.data[0].total_seconds);
-			document.getElementById('hours').innerText = hours;
-			document.getElementById('minutes').innerText = minutes;
-			document.getElementById('seconds').innerText = seconds;
+				document.querySelector('.gst-popup').style.display = 'block';
+				document.querySelector('.gst-popup-auth').style.display = 'none';
+
+				let serverTotal = json.data[0] ? json.data[0].total_seconds : 0;
+
+				const {hours, minutes, seconds} = getHoursMinutesSeconds(serverTotal + time);
+				document.getElementById('hours').innerText = hours;
+				document.getElementById('minutes').innerText = minutes;
+				document.getElementById('seconds').innerText = seconds;
+			});
+
 		});
 	})
 });
