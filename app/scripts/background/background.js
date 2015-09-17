@@ -46,6 +46,7 @@ chrome.runtime.onMessage.addListener(
 			updateIcon();
 
 		} else if (request.GST_AUTH_TOKEN) {
+
 			chrome.storage.sync.set({
 				'GST_AUTH_TOKEN': request.GST_AUTH_TOKEN
 			}, () => {

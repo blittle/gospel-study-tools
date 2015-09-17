@@ -2,10 +2,11 @@ import React from 'react';
 import { take, each } from 'lodash';
 
 import Avatar from './components/Avatar';
-import { getDayAggregation, getContent, getAuthenticatedUser } from './data';
+import { getDayAggregation, getContent, getAuthenticatedUser, getBadges } from './data';
 import { DAY } from './constants';
 import ContentList from './components/ContentList';
 import HistoryTotals from './components/HistoryTotals';
+import Badges from './components/Badges';
 import { parseDate } from './utils';
 import { renderSunBurst } from './components/SunBurst';
 import Challenges from './components/Challenges';
@@ -15,6 +16,7 @@ import './app.css';
 getDayAggregation(365).then(renderCalHeatmap)
 getAuthenticatedUser().then(renderAvatar)
 getContent().then(renderContent);
+getBadges().then(renderBadges);
 
 function renderCalHeatmap(response) {
 	if (!response.data || !response.data.length) {
@@ -116,5 +118,14 @@ function renderAvatar(user) {
 	React.render(
 		<Avatar user={user}/>,
 	  document.getElementById('avatar')
+	);
+}
+
+function renderBadges(response) {
+	let badges = response.data.badges;
+
+	React.render(
+		<Badges badges={badges}/>,
+	  document.getElementById('badges')
 	);
 }

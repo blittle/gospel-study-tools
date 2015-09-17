@@ -111,3 +111,21 @@ export function showAuthErrorLogin() {
 	document.querySelector('.auth').className = 'auth show';
 	document.querySelector('.main-app').className = 'main-app hidden';
 }
+
+export function getBadges() {
+	return new Promise((resolve, reject) => {
+		getAuthorization().then((token) => {
+			fetch(HOST + `/api/study-content/badges`, {
+				method: 'get',
+				headers: {
+					'Authorization': token,
+					'Content-Type': 'application/json'
+				}
+			})
+			.catch(reject)
+			.then(checkResponse)
+			.catch(reject)
+			.then(resolve);
+		}).catch(showAuthErrorLogin)
+	})
+}

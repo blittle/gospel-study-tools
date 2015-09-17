@@ -1,0 +1,20 @@
+.gospel-badges {
+	width: 520px;
+	margin: 0 auto;
+	padding: 50px;
+}
+
+.gospel-badge {
+	width: 100px;
+	margin: 20px;
+	display: inline-block;
+}
+
+.gospel-badge > img {
+	stroke: #f5f5f5;
+}
+
+.gospel-badge.\+active {
+	border-radius: 50%;
+	background: rgb(145, 170, 157);
+}
