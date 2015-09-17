@@ -73,7 +73,7 @@ export default class Avatar extends React.Component {
 				<img onClick={this.toggleDialog.bind(this)} className="avatar__img" src={avatar ? avatar : 'images/person.png'}/>
 				<div style={{display: this.state.dialogDisplayed ? 'block' : 'none'}} className="dropdown-menu dropdown-menu-se">
 					<div className="dropdown-header header-nav-current-user css-truncate">
-						Signed in as <strong className="css-truncate-target">{name}</strong>
+						Signed in as <strong className="css-truncate-target" title={name}>{name}</strong>
 					</div>
 					<div className="dropdown-divider"></div>
 

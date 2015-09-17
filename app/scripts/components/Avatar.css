@@ -108,3 +108,12 @@
 	left: 0;
 	z-index: 99999;
 }
+
+.css-truncate-target {
+	display: inline-block;
+	max-width: 76px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	vertical-align: top;
+}
