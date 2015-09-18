@@ -53,6 +53,7 @@ export default class Badges extends React.Component {
 	}
 
 	getBadge(active, id) {
+		active = true;
 		let myClass = ( 'gospel-badge ' + ( active ? '+active' : '' ) );
 
 		return (

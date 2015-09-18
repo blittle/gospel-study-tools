@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export function throttle(callback, limit) {
   var wait = false;
   return function() {
@@ -31,6 +33,8 @@ export function msToTime(duration) {
 }
 
 export function parseDate(date) {
+	let d = moment(date);
 	let parsed = date.substring(0, date.indexOf('T')).split('-')
-	return new Date(parsed[0] * 1, ( parsed[1] * 1 ) - 1, parsed[2] * 1);
+
+	return new Date(d.year(), d.month(), d.date());
 }

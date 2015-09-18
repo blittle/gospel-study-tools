@@ -18,10 +18,10 @@
    xml:space="preserve"
    inkscape:version="0.91 r13725"
    sodipodi:docname="gc_100.svg"><metadata
-     id="metadata12726"><rdf:RDF><cc:Work
+     id="metadata35"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
-     id="defs12724" /><sodipodi:namedview
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+     id="defs33" /><sodipodi:namedview
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1"
@@ -30,19 +30,19 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1336"
-     inkscape:window-height="839"
-     id="namedview12722"
+     inkscape:window-width="1545"
+     inkscape:window-height="874"
+     id="namedview31"
      showgrid="false"
      inkscape:zoom="1.3898704"
      inkscape:cx="84.900002"
      inkscape:cy="84.900002"
      inkscape:window-x="45"
-     inkscape:window-y="27"
+     inkscape:window-y="33"
      inkscape:window-maximized="0"
      inkscape:current-layer="Layer_1" /><style
      type="text/css"
-     id="style12694">
+     id="style3">
 	.st0{fill:#FFFFFF;stroke:#FEB41C;stroke-width:16;stroke-miterlimit:10;}
 	.st1{fill:#FFFFFF;stroke:#FEB41C;stroke-width:10.4325;stroke-miterlimit:10;}
 	.st2{fill:#FFFFFF;}
@@ -57,35 +57,28 @@
 	.st11{fill:none;stroke:#FEB41C;stroke-width:6.2981;stroke-miterlimit:10;}
 	.st12{fill:none;stroke:#000000;stroke-width:8;stroke-miterlimit:10;}
 </style><g
-     id="g12696"
-     style="fill:#dddddd;fill-opacity:1;opacity:0.73"><g
-       id="g12698"
-       style="fill:#dddddd;fill-opacity:1"><path
+     id="g5"><g
+       id="g7"><path
          d="M84.9,0C38.1,0,0,38.1,0,84.9s38.1,84.9,84.9,84.9s84.9-38.1,84.9-84.9S131.7,0,84.9,0z M84.9,159.3    c-41.1,0-74.5-33.4-74.5-74.5c0-41.1,33.4-74.5,74.5-74.5c41.1,0,74.5,33.4,74.5,74.5C159.3,125.9,125.9,159.3,84.9,159.3z"
-         id="path12700"
+         id="path9"
          style="fill:#dddddd;fill-opacity:1" /></g><g
-       id="g12702"
-       style="fill:#dddddd;fill-opacity:1"><polygon
+       id="g11"><polygon
          points="43.1,116.6 49.2,116.6 49.2,142.9 57.6,142.9 57.6,109.8 43.1,109.8   "
-         id="polygon12704"
+         id="polygon13"
          style="fill:#dddddd;fill-opacity:1" /></g><g
-       id="g12706"
-       style="fill:#dddddd;fill-opacity:1"><path
+       id="g15"><path
          d="M78.9,109.6c-9.4,0-14.7,6-14.7,16.7c0,10.8,5.2,16.8,14.7,16.8c9.3,0,14.6-6,14.6-16.8C93.4,115.6,88.2,109.6,78.9,109.6    z M78.9,137c-4.2,0-6-3.1-6-10.7s1.8-10.6,6-10.6c4.2,0,6,3.1,6,10.6S83,137,78.9,137z"
-         id="path12708"
+         id="path17"
          style="fill:#dddddd;fill-opacity:1" /></g><g
-       id="g12710"
-       style="fill:#dddddd;fill-opacity:1"><path
+       id="g19"><path
          d="M112,109.6c-9.4,0-14.7,6-14.7,16.7c0,10.8,5.2,16.8,14.7,16.8c9.3,0,14.6-6,14.6-16.8C126.6,115.6,121.4,109.6,112,109.6    z M112,137c-4.2,0-6-3.1-6-10.7s1.8-10.6,6-10.6c4.2,0,6,3.1,6,10.6S116.2,137,112,137z"
-         id="path12712"
+         id="path21"
          style="fill:#dddddd;fill-opacity:1" /></g><g
-       id="g12714"
-       style="fill:#dddddd;fill-opacity:1"><path
+       id="g23"><path
          d="M88.6,31.6l-12.3-2.2c0-1-0.7-2-1.8-2.2l-5.3-1c-1.2-0.2-2.3,0.6-2.6,1.8l-0.4,2.2c-0.2,1.2,0.6,2.3,1.8,2.6l5.3,1    c1.1,0.2,2.1-0.4,2.4-1.4l11,2l7.5,11.1L66,42.2L41.9,59.6v41.8l7.5-8.8V63.4l16.6-12V102l7.5-8.7V50.6l46.8,5.4v33.2l7.5,8V49.3    l-29.6-3.4L88.6,31.6z"
-         id="path12716"
+         id="path25"
          style="fill:#dddddd;fill-opacity:1" /></g><g
-       id="g12718"
-       style="fill:#dddddd;fill-opacity:1"><polygon
+       id="g27"><polygon
          points="113.3,93.2 113.3,61.7 80.5,58.2 80.5,95 87.5,87 87.5,66.3 106.7,68.2 106.7,86.6   "
-         id="polygon12720"
+         id="polygon29"
          style="fill:#dddddd;fill-opacity:1" /></g></g></svg>
