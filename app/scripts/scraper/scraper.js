@@ -1,4 +1,4 @@
-import { throttle } from '../utils.js';
+import { throttle } from 'lodash';
 import { ONE_MINUTE } from '../constants';
 import resourceHandlers from './resource-handlers.js';
 
@@ -7,11 +7,11 @@ import resourceHandlers from './resource-handlers.js';
  * a study resource. Throttled cause we don't want to constantly
  * send events (especially in the case of scroll)
  */
-let sendResourceNotification = throttle(() => {
+let sendResourceNotification = throttle(function() {
 	if (!pageResource) return;
 
 	chrome.runtime.sendMessage(pageResource, console.log);
-}, ONE_MINUTE);
+}, ONE_MINUTE / 2);
 
 /**
  * Parse the type of resource from the URL. Dependening on the
@@ -48,3 +48,8 @@ document.body.onscroll = function() {
 	// Each time the user scrolls, send a new resource notification.
 	sendResourceNotification();
 }
+
+document.body.addEventListener("touchstart", function() {
+	// Each time the user touches the screen, send a new resource notification
+	sendResourceNotification();
+});

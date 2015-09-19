@@ -3,6 +3,7 @@ import { HOST } from './constants';
 import { parseDate } from './utils';
 import * as resource from './background/resource';
 import { showAuthErrorLogin } from './data';
+import moment from 'moment';
 
 document.getElementById('login').addEventListener('click', () => {
 	chrome.tabs.create({ url: "index.html" });
@@ -59,7 +60,12 @@ chrome.storage.sync.get('GST_AUTH_TOKEN', function(result) {
 				document.querySelector('.gst-popup').style.display = 'block';
 				document.querySelector('.gst-popup-auth').style.display = 'none';
 
-				let serverTotal = json.data[0] ? json.data[0].total_seconds : 0;
+				let serverTotal = 0;
+
+				// is it the same day as today?
+				if (json.data && json.data[0] && moment(json.data[0].day).diff(moment(), 'days') === 0) {
+					serverTotal = json.data[0] ? json.data[0].total_seconds : 0;
+				}
 
 				const {hours, minutes, seconds} = getHoursMinutesSeconds(serverTotal + time);
 				document.getElementById('hours').innerText = hours;

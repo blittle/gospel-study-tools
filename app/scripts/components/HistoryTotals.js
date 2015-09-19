@@ -11,6 +11,7 @@ function getLongestStreakObject(contentList) {
 
 		if (!streak.length) {
 			streak.push(content);
+			oldStreak = streak;
 			continue;
 		}
 
@@ -34,7 +35,7 @@ function getLongestStreakObject(contentList) {
 }
 
 function getCurrentStreak(contentList) {
-	if (!contentList.length || moment(parseDate(contentList[0].day)).format('MMM DD YY') !== moment().format('MMM DD YY')) {
+	if (!contentList.length || moment(contentList[0].day).diff(moment(), 'days') !== 0) {
 		return [];
 	}
 
@@ -45,6 +46,9 @@ function getCurrentStreak(contentList) {
 
 		if (i === 0) {
 			streak.unshift(content);
+			if (contentList.length === 1) {
+				return streak;
+			}
 			continue;
 		}
 
