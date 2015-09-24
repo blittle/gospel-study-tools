@@ -11,7 +11,7 @@ let sendResourceNotification = throttle(function() {
 	if (!pageResource) return;
 
 	chrome.runtime.sendMessage(pageResource, console.log);
-}, ONE_MINUTE / 2);
+}, ( ONE_MINUTE / 60 ));
 
 /**
  * Parse the type of resource from the URL. Dependening on the
