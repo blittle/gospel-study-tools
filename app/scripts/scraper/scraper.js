@@ -44,10 +44,10 @@ document.body.onclick = function() {
 	sendResourceNotification();
 }
 
-document.body.onscroll = function() {
+document.addEventListener('scroll', function() {
 	// Each time the user scrolls, send a new resource notification.
 	sendResourceNotification();
-}
+});
 
 document.body.addEventListener("touchstart", function() {
 	// Each time the user touches the screen, send a new resource notification
