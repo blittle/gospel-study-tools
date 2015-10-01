@@ -1,12 +1,14 @@
 export default {
 	scripture: {
-		regex: /\/scriptures\/(.+)\/(.+)\/(.*)/,
+		regex: /\/scriptures\/(.+)\/(.+)\/(.+)/,
 		getResource: function(match) {
 			return {
 				type: "SCRIPTURE",
 				l1: match[1],
 				l2: match[2],
-				l3: match[3]
+
+				// links to specific verses include the verse in the URL, this gets rid of the verse
+				l3: match[3].split('.')[0]
 			}
 		}
 	},
